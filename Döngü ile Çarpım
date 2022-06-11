@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int sayilar[5];
+    int i,carpim=1;
+    for(i=0;i<5;i++)
+    {
+        printf("sayi giriniz:");
+        scanf("%d",&sayilar[i]);
+    }
+    for(i=0;i<5;i++)
+    {
+        carpim = carpim * sayilar[i];
+    }
+    printf("%d",carpim);
+    return 0;
+}
