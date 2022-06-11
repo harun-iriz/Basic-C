@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int usAl(int sayi1,int sayi2)
+{
+    int sonuc=1,i;
+    for(i=0;i<sayi2;i++)
+        {
+            sonuc*=sayi1;
+        }
+    return sonuc;
+}
+
+int main()
+{
+    int sayi1,sayi2;
+    printf("sayi giriniz:");
+    scanf("%d",&sayi1);
+    printf("us giriniz:");
+    scanf("%d",&sayi2);
+    printf("%d",usAl(sayi1,sayi2));
+    return 0;
+}
