@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void vucud(float kilo,float boy)
+{
+    float hesap;
+
+    hesap=kilo/(boy*boy);
+
+    if(hesap<19)
+    {
+        printf("ZAYIF");
+    }
+    else if(hesap<25)
+    {
+        printf("NORMAL");
+    }
+    else if(hesap<30)
+    {
+        printf("KILOLU");
+    }
+    else
+    {
+        printf("OBEZ");
+    }
+
+}
+int main()
+{
+
+   float boy,kilo;
+   printf("kilonuzu giriniz:");
+   scanf("%f",&kilo);
+   printf("boyunuzu giriniz:");
+   scanf("%f",&boy);
+
+    vucud(kilo,boy);
+
+    return 0;
+}
