@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+    int zar_toplam,zar_toplam_2,zar_3,zar_4;
+    srand(time(NULL));
+
+    int zar_1=1+rand()%6;
+    int zar_2=1+rand()%6;
+
+    printf("birinci zarin degeri:%d , ikinci zarin degeri:%d \n",zar_1,zar_2);
+    zar_toplam = zar_1+zar_2;
+    printf("Zarlarin toplam degeri:%d \n",zar_toplam);
+
+    if(zar_toplam==7||zar_toplam==11)
+    {
+        printf("KAZANDINIZ!!!");
+    }
+    else if(zar_toplam==2 || zar_toplam==3 || zar_toplam==12)
+    {
+        printf("KAYBETTINIZ!!!");
+    }
+    else if(zar_toplam==4 || zar_toplam==5 || zar_toplam==6 || zar_toplam==8 || zar_toplam==9 || zar_toplam==10)
+    {
+        printf("TEKRAR ZAR ATINIZ! \n");
+
+        for(;;)
+        {
+            zar_3=1+rand()%6;
+            zar_4=1+rand()%6;
+
+            printf("birinci zarin degeri:%d , ikinci zarin degeri:%d \n",zar_3,zar_4);
+            zar_toplam_2 = zar_3+zar_4;
+            printf("Zarlarin toplam degeri:%d \n",zar_toplam_2);
+            if(zar_toplam_2==7)
+            {
+                printf("KAYBETTINIZ!!!");
+                break;
+            }
+            else if(zar_toplam_2==zar_toplam)
+            {
+                printf("KAZANDINIZ!!!");
+                break;
+            }
+            else
+            {
+                printf("TEKRAR ZAR ATINIZ \n");
+            }
+        }
+    }
+
+    return 0;
+}
