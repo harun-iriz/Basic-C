@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+   int a,r,alan,cevre;
+   printf("yari cap giriniz:");
+   scanf("%d",&r);
+
+   printf("alan hesabı icin 1'e basiniz, cevre hesaplamak için 2' ye basiniz");
+   scanf("%d",&a);
+   if(a==1){
+    alan=3*r*2;
+    printf("Alan=%d",alan);
+   }
+   else if(a==2)
+   {
+
+    cevre=3*r;
+    printf("Cevre=%d",cevre);
+   }
+   else{
+    printf("hatali giris!");
+   }
+
+
+    return 0;
+}
