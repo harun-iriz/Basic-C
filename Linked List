@@ -1,0 +1,165 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct liste{
+    int not;
+    struct liste*next;
+};
+
+struct liste*start=NULL;
+struct liste*q=NULL;
+
+void sonaEkle(int sona)
+{
+    struct liste* sonaEklenecek=(struct liste*)malloc(sizeof(struct liste));
+    sonaEklenecek->not=sona;
+    sonaEklenecek->next=NULL;   // işaret edeceği düğüm - sonra ekleneceği için null
+
+    if(start == NULL) // hiç eleman yoksa
+        start=sonaEklenecek;
+    else
+    {
+        q=start;
+        while(q->next!=NULL)
+        {
+            q=q->next;
+        }
+        q->next=sonaEklenecek;
+    }
+};
+
+void basaEkle(int basa)
+{
+    struct liste* basaEklenecek=(struct liste*)malloc(sizeof(struct liste));
+    basaEklenecek->not=basa;
+    basaEklenecek->next=start;
+    start=basaEklenecek;
+
+}
+
+void arayaEkle(int x , int y) // x --- hagi sayinin önüne ekleneciğini gösteren y --- hangi sayinin ekleneceği
+{
+
+        struct liste*arayaEklenecek = (struct liste*)malloc(sizeof(struct liste));
+        arayaEklenecek->not=y;
+        q=start;
+        while(q->next->not!=x)
+        {
+            q=q->next;
+        }
+        struct not*onune=(struct liste*)malloc(sizeof(struct liste));
+        onune = q->next;
+        q->next=arayaEklenecek;
+        arayaEklenecek->next=onune;
+}
+
+void sondansil()
+{
+    q=start;
+    while(q->next->next!=NULL)
+    {
+        q=q->next;
+    }
+    free(q->next);
+    q->next=NULL;
+}
+
+void bastansil()
+{
+    struct liste* ikinci=NULL;
+    ikinci = start->next;
+    free(start);
+    start=ikinci;
+}
+
+void aradansil(int x)
+{
+    if(start==x)
+        bastansil();
+    struct liste* onceki=NULL;
+    struct liste* sonraki=NULL;
+
+    q=start;
+    while(q->next->not!=x)
+    {
+        q=q->next;
+    }
+    if(q->next==NULL)
+        sondansil();
+    onceki=q;
+    sonraki = q->next->next;
+    free(q->next);
+    onceki->next=sonraki;
+
+}
+
+
+
+void yazdir()
+{
+    q=start;
+    while(q->next!=NULL)
+    {
+        printf("%d->",q->not);
+        q=q->next;
+    }
+    printf("%d",q->not);
+}
+
+
+int main()
+{
+    int sona,basa,sec,x,y,sil,u;
+
+
+    while(1==1){
+    printf(" 1- sona ekleme yap:\n");
+    printf(" 2- basa ekleme yap:\n");
+    printf(" 3- araya ekleme yap:\n");
+    printf(" 4- aradan sil:\n");
+    printf(" 5- son sayiyi sil:\n");
+    printf(" 6- bastaki sayiyi sil:\n");
+    printf(" 7- ekrana yazdir:\n");
+    printf(" 8- cikis:\n");
+
+    scanf("%d",&sec);
+
+    switch(sec)
+    {
+        case 1:
+            printf("\n hangi sayiyi girmek istiyorsunuz:");
+            scanf("%d",&sona);
+            sonaEkle(sona);
+            break;
+        case 2:
+            printf("\n hangi sayiyi girmek istiyorsunuz:");
+            scanf("%d",&basa);
+            basaEkle(basa);
+            break;
+        case 3:
+            printf("\n hangi sayinin onune ekleme yapacaksin:");
+            scanf("%d",&x);
+            printf("\n hangi sayiyi girmek istiyorsunuz:");
+            scanf("%d",&y);
+            arayaEkle(x,y);
+        case 4:
+            printf("\n hangi sayiyi silmek istiyorsunuz:");
+            scanf("%d",&u);
+            aradansil(u);
+        case 5:
+            sondansil();
+
+        case 6:
+            bastansil();
+            break;
+        case 7:
+            yazdir();
+            break;
+        case 8:
+            exit(0);
+            break;
+    }
+    }
+
+    return 0;
+}
