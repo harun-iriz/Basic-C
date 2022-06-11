@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int enBuyukSayi(int[],int);
+int main()
+{
+    int dizi[6]={21,54,3,95,213,17};
+    int buyukSayi = enBuyukSayi(dizi,5);
+    printf("en buyuk sayi: %d",buyukSayi);
+
+    return 0;
+}
+int max(int a,int b)
+{
+    if(a>b)
+        return a;
+    return b;
+}
+
+int enBuyukSayi(int dizi[],int x)
+{
+    if(x==0)
+        return dizi[0];
+    return max(enBuyukSayi(dizi,x-1),dizi[x]);
+}
