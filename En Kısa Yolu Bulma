@@ -1,0 +1,87 @@
+#include <stdio.h>
+
+#define M 6
+#define N 12
+int length = M * N;
+int yol[M][N] = { 0 };
+
+void findPath(int[][N],int [][N], int, int, int);
+int main() {
+	int guzergah[M][N] = { 0 };
+	int i = 0, j = 0;
+	//             0 1 2 3 4 5 6 7 8 9 10 11
+	int A[M][N] = { { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 } //0
+			      , { 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0 } //1
+			      , { 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1} //2
+			      , { 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1 } //3
+			      , { 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1 } //4
+			      , { 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1 } }; //5
+
+
+	int k, l;
+
+			for (k = 0; k < M; k++)
+				for (l = 0; l < N; l++){
+				guzergah[k][l]=0;
+
+				}
+
+
+	if (A[0][0]==1) guzergah[0][0] = 1;
+	findPath(A,guzergah, i, j, 0);
+
+
+	if (length == M * N)
+		printf("Herhangi bir yol bulunamadÃ½");
+	else
+	{
+		printf("yol uzunlugu=%d\n",length);
+
+
+		for (k = 0; k < M; k++){
+			for (l = 0; l < N; l++)
+				printf("%2d",yol[k][l]);
+			printf("\n");
+		}
+
+	}
+	//getch();
+	return 0;
+}
+
+void findPath(int A[][N],int guzergah[][N], int i, int j, int len) {
+
+	if (i == (M - 1) && j == (N - 1)) {
+		if (len < length) {
+			int k, l;
+			length = ++len;
+			for (k = 0; k < M; k++)
+				for (l = 0; l < N; l++)
+					yol[k][l] = guzergah[k][l];
+
+		}
+
+	}
+
+	if ((i < M - 1) && (j < N) && (A[i + 1][j] == 1)
+			&& guzergah[i + 1][j] == 0) {
+		guzergah[i + 1][j] = 1;
+		findPath(A, guzergah,i + 1, j, len + 1);
+	}
+	if ((i < M) && (j < N - 1) && (A[i][j + 1] == 1)
+			&& guzergah[i][j + 1] == 0) {
+		guzergah[i][j + 1] = 1;
+		findPath(A,guzergah, i, j + 1, len + 1);
+	}
+
+	if ((i > 0) && (j > 0) && (A[i][j - 1] == 1) && guzergah[i][j - 1] == 0) {
+		guzergah[i][j - 1] = 1;
+		findPath(A,guzergah, i, j - 1, len + 1);
+	}
+	if ((i > 0) && (j > 0) && (A[i - 1][j] == 1) && guzergah[i - 1][j] == 0) {
+		guzergah[i - 1][j] = 1;
+		findPath(A,guzergah, i - 1, j, len + 1);
+	}
+	guzergah[i ][j] = 0;
+
+}
