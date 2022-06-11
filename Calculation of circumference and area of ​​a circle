@@ -4,10 +4,10 @@
 int main()
 {
    int a,r,alan,cevre;
-   printf("yari cap giriniz:");
+   printf("enter half cap:");
    scanf("%d",&r);
 
-   printf("alan hesabı icin 1'e basiniz, cevre hesaplamak için 2' ye basiniz");
+   printf("press 1 for domain account, press 2 to calculate perimeter");
    scanf("%d",&a);
    if(a==1){
     alan=3*r*2;
@@ -20,7 +20,7 @@ int main()
     printf("Cevre=%d",cevre);
    }
    else{
-    printf("hatali giris!");
+    printf("incorrect entry!");
    }
 
 
