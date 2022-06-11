@@ -1,0 +1,120 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+
+    int data;
+    struct node * next;
+
+};
+
+struct node *start=NULL;
+struct node *temp=NULL;
+struct node *q=NULL;
+
+
+void sonaEkle(int veri){
+
+    struct node*eklenecek=(struct node*)malloc(sizeof(struct node));
+    eklenecek->data=veri;
+    eklenecek->next=NULL;
+
+    if(start==NULL)
+        start=eklenecek;
+    else{
+        q=start;
+        while(q->next!=NULL)
+        {
+            q=q->next;
+        }
+        q->next=eklenecek;
+    }
+}
+
+void yazdir()
+{
+    q=start;
+    while(q->next!=NULL)
+    {
+        printf("%d=>",q->data);
+        q=q->next;
+    }
+    printf("%d",q->data);
+}
+
+void sil(int x)
+{
+    struct node *onceki=NULL;
+    struct node *sonraki=NULL;
+
+    q=start;
+    while(q->next->data!=x)
+    {
+        q=q->next;
+    }
+    onceki=q;
+    sonraki=q->next->next;
+    free(q->next);
+    onceki->next=sonraki;
+}
+
+void terscevir()
+{
+    //struct node *temp;
+    struct node *prev=NULL;
+    q=start;
+    while(q!=NULL)
+    {
+        temp= q->next;
+        q->next=prev;
+        prev=q;
+        q=temp;
+    }
+    start=prev;
+}
+
+int main()
+{
+    /*
+    struct node *ilkdugum =NULL;
+    ilkdugum=(struct node*)malloc(sizeof(struct node));
+    struct node *ikincidugum=NULL;
+    ikincidugum=(struct node*)malloc(sizeof(struct node));
+    ilkdugum ->data=15;
+    ilkdugum->next=ikincidugum;
+    ikincidugum->data=20;
+    ikincidugum->next=NULL;
+    printf("%d => %d",ilkdugum->data,ikincidugum->data);
+    */
+
+    int secim,ekle,silinecek;
+
+    while(1==1){
+
+        printf("1: eleman ekleme\n");
+        printf("2: eleman silme\n");
+        printf("3: yazdir\n");
+
+        printf("secim giriniz:");
+        scanf("%d",&secim);
+
+        switch(secim)
+        {
+            case 1:
+                printf("eklemek istediginiz sayi?");
+                scanf("%d",&ekle);
+                sonaEkle(ekle);
+                break;
+            case 2:
+                printf("silmek istediginiz sayi?");
+                scanf("%d",&silinecek);
+                sil(silinecek);
+                break;
+            case 3:
+                yazdir();
+                break;
+        }
+    }
+
+    return 0;
+}
